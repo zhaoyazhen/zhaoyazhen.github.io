@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>如何创建一个自己的博客 | Hexo</title>
+  <title>js的面向对象（封装、继承、多态） | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.首先下载安装nodejsNodejs是一个运行环境，这个环境运行js代码(作用相当于浏览器)，大家可搜索https://npm.taobao.org/mirrors/node/v8.9.3/node-v8.9.3-x64.msi 这个网址，然后根据自己的电脑选择版本，本人的是window 64位操作系统，所以选择Windows 系统 (.msi) 64位。最后在命令窗口 node -v 和">
+  <meta name="description" content="面向对象1).对象：万物皆对象2).对象包含：属性和方法 、用变量描述属性、用函数来描述方法 一、 js封装、继承、多态的定义 1.1 封装：通俗的来说。就是封装函数，通过私有化的变量和私有化的方法，不让外部访问到。    1.2 继承：简约来说可分为两种：1).通过原型prototype对象实例化实现此类的继承。2).直接实例化对象复制，完全复制父类对象">
 <meta property="og:type" content="article">
-<meta property="og:title" content="如何创建一个自己的博客">
-<meta property="og:url" content="http://yoursite.com/2018/04/08/hello-world/index.html">
+<meta property="og:title" content="js的面向对象（封装、继承、多态）">
+<meta property="og:url" content="http://yoursite.com/2016/11/05/js的面向对象/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="1.首先下载安装nodejsNodejs是一个运行环境，这个环境运行js代码(作用相当于浏览器)，大家可搜索https://npm.taobao.org/mirrors/node/v8.9.3/node-v8.9.3-x64.msi 这个网址，然后根据自己的电脑选择版本，本人的是window 64位操作系统，所以选择Windows 系统 (.msi) 64位。最后在命令窗口 node -v 和">
+<meta property="og:description" content="面向对象1).对象：万物皆对象2).对象包含：属性和方法 、用变量描述属性、用函数来描述方法 一、 js封装、继承、多态的定义 1.1 封装：通俗的来说。就是封装函数，通过私有化的变量和私有化的方法，不让外部访问到。    1.2 继承：简约来说可分为两种：1).通过原型prototype对象实例化实现此类的继承。2).直接实例化对象复制，完全复制父类对象">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-06-05T12:56:52.821Z">
+<meta property="og:updated_time" content="2016-10-05T13:20:13.248Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="如何创建一个自己的博客">
-<meta name="twitter:description" content="1.首先下载安装nodejsNodejs是一个运行环境，这个环境运行js代码(作用相当于浏览器)，大家可搜索https://npm.taobao.org/mirrors/node/v8.9.3/node-v8.9.3-x64.msi 这个网址，然后根据自己的电脑选择版本，本人的是window 64位操作系统，所以选择Windows 系统 (.msi) 64位。最后在命令窗口 node -v 和">
+<meta name="twitter:title" content="js的面向对象（封装、继承、多态）">
+<meta name="twitter:description" content="面向对象1).对象：万物皆对象2).对象包含：属性和方法 、用变量描述属性、用函数来描述方法 一、 js封装、继承、多态的定义 1.1 封装：通俗的来说。就是封装函数，通过私有化的变量和私有化的方法，不让外部访问到。    1.2 继承：简约来说可分为两种：1).通过原型prototype对象实例化实现此类的继承。2).直接实例化对象复制，完全复制父类对象">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -154,42 +154,63 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-hello-world" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-js的面向对象" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      如何创建一个自己的博客
+      js的面向对象（封装、继承、多态）
     </h1>
   
 
         
-        <a href="/2018/04/08/hello-world/" class="archive-article-date">
-  	<time datetime="2018-04-08T09:17:30.934Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-08</time>
+        <a href="/2016/11/05/js的面向对象/" class="archive-article-date">
+  	<time datetime="2016-11-05T13:13:35.228Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-11-05</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <blockquote>
-<h3 id="1-首先下载安装nodejs"><a href="#1-首先下载安装nodejs" class="headerlink" title="1.首先下载安装nodejs"></a>1.首先下载安装nodejs</h3><p>Nodejs是一个运行环境，这个环境运行js代码(作用相当于浏览器)，大家可搜索<a href="https://npm.taobao.org/mirrors/node/v8.9.3/node-v8.9.3-x64.msi" target="_blank" rel="noopener">https://npm.taobao.org/mirrors/node/v8.9.3/node-v8.9.3-x64.msi</a> 这个网址，然后根据自己的电脑选择版本，本人的是window 64位操作系统，所以选择Windows 系统 (.msi) 64位。最后在命令窗口 node -v 和 npm -v 来验证是否安装成功。</p>
+        <h3 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h3><p>1).对象：万物皆对象<br>2).对象包含：属性和方法 、用变量描述属性、用函数来描述方法</p>
+<h2 id="一、-js封装、继承、多态的定义"><a href="#一、-js封装、继承、多态的定义" class="headerlink" title="一、 js封装、继承、多态的定义"></a>一、 js封装、继承、多态的定义</h2><blockquote>
+<p>1.1 封装：通俗的来说。就是封装函数，通过私有化的变量和私有化的方法，不让外部访问到。</p>
 </blockquote>
+<hr>
 <blockquote>
-<h3 id="2-安装hexo工具"><a href="#2-安装hexo工具" class="headerlink" title="2.安装hexo工具"></a>2.安装hexo工具</h3><p>在网上搜索hexo，然后在命令窗口输入npm install -g hexo-cli，如果速度太慢，可以切换成淘宝镜像源：npm config set registry <a href="https://registry.npm.taobao.org。" target="_blank" rel="noopener">https://registry.npm.taobao.org。</a></p>
+<p>1.2 继承：简约来说可分为两种：1).通过原型prototype对象实例化实现此类的继承。2).直接实例化对象复制，完全复制父类对象</p>
 </blockquote>
+<a id="more"></a>
 <blockquote>
-<h3 id="3-使用如下命令安装下载博客源代码"><a href="#3-使用如下命令安装下载博客源代码" class="headerlink" title="3.使用如下命令安装下载博客源代码"></a>3.使用如下命令安装下载博客源代码</h3><p>hexo init blog // 找到一个合适的文件(确保你的路径没有中文)输入此命令。<br>     cd blog     // 切换到blog文件夹中<br>     npm install // 安装依赖文件<br>     hexo server // 在本地开启一个服务器<br><a id="more"></a></p>
-<h3 id="4-配置远程仓库"><a href="#4-配置远程仓库" class="headerlink" title="4.配置远程仓库"></a>4.配置远程仓库</h3><p>首先需要给hexo安装git工具插件，用npm install hexo-deployer-git –save命令，然后在hexo的工程中的根目录下找到_config.yml的文件，配置如下：<br>     deploy:<br>          type: git<br>          repository: <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:hjyl-cheng/hjyl-cheng.github.io.git<br>          branch: master</p>
+<p>1.3 多态： 多态就是通过对传递的参数判断来执行逻辑，即可实现一种多态处理机制</p>
 </blockquote>
-<blockquote>
-<h3 id="5-使用hexo将代码提交到远程仓库"><a href="#5-使用hexo将代码提交到远程仓库" class="headerlink" title="5.使用hexo将代码提交到远程仓库"></a>5.使用hexo将代码提交到远程仓库</h3><p>hexo clean // 先将之前生成的public文件夹删除掉<br>       hexo d g   // 生成html代码并且提交到github上。 g: 生成 d:提交</p>
+<h2 id="二、构造对象的五种方法。"><a href="#二、构造对象的五种方法。" class="headerlink" title="二、构造对象的五种方法。"></a>二、构造对象的五种方法。</h2><h3 id="1-自定义对象（不适合批量创建对象）"><a href="#1-自定义对象（不适合批量创建对象）" class="headerlink" title="1.自定义对象（不适合批量创建对象）"></a>1.自定义对象（不适合批量创建对象）</h3>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">//创建学生对象，年龄、姓名、学号、年级属性  思考，考试方法</span><br><span class="line"></span><br><span class="line">var stu=new Object();//创建对象实例(创建学生对象)</span><br><span class="line">//添加属性</span><br><span class="line">stu.no=&apos;10001&apos;;</span><br><span class="line">stu.name=&apos;Tom&apos;;</span><br><span class="line">stu.age=20;</span><br><span class="line">stu.grade=&apos;大一&apos;;</span><br><span class="line"></span><br><span class="line">//添加方法</span><br><span class="line">stu.think=function()&#123;</span><br><span class="line">	console.log(stu.name+&apos;思考中....&apos;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">//添加考试方法</span><br><span class="line">stu.test=function()&#123;</span><br><span class="line">	console.log(stu.name+&apos;考试中&apos;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">//访问对象</span><br><span class="line">console.log(stu.no,stu.name,stu.age,stu.grade);</span><br><span class="line">//访问方法</span><br><span class="line">stu.think();</span><br><span class="line">stu.test();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//在创建一个学生对象</span><br><span class="line">var stu1=new Object();</span><br><span class="line">//添加属性</span><br><span class="line">stu1.name=&apos;Jack&apos;;</span><br><span class="line">stu1.age=21;</span><br><span class="line">stu1.grade=&apos;大二&apos;;</span><br><span class="line">stu1.no=&apos;2001&apos;;</span><br><span class="line">//添加方法</span><br><span class="line">stu1.think=function()&#123;</span><br><span class="line">	console.log(stu1.name+&apos;思考中....&apos;);</span><br><span class="line">&#125;;</span><br><span class="line">stu1.test=function()&#123;</span><br><span class="line">	console.log(stu1.name+&apos;考试中&apos;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">stu1.think();</span><br><span class="line">stu1.test();</span><br></pre></td></tr></table></figure>
+<h3 id="2-工厂模式创建关键对象"><a href="#2-工厂模式创建关键对象" class="headerlink" title="2. 工厂模式创建关键对象"></a>2. 工厂模式创建关键对象</h3><blockquote>
+<p>优点：可以快速的创建对象，避免了大量重复性代码<br>缺点：为每个对象都添加了功能，慧造成内存浪费</p>
 </blockquote>
-<blockquote>
-<h3 id="6-优化博客"><a href="#6-优化博客" class="headerlink" title="6.优化博客"></a>6.优化博客</h3><p>UI 优化，可下载相关的主题，修改theme: ***，再根据个人喜好修改头像等。</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">function createStudent(name,age)&#123;</span><br><span class="line">	var obj=new Object();</span><br><span class="line">	//添加属性</span><br><span class="line">	obj._name=name;</span><br><span class="line">	obj._age=age;</span><br><span class="line">	//添加方法</span><br><span class="line">	obj.walk=function()&#123;</span><br><span class="line">		console.log(this._name+&apos;在走路&apos;);</span><br><span class="line">	&#125;;</span><br><span class="line">	return obj;//返回对象</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var stu1=createStudent(&apos;Jack&apos;,30);</span><br><span class="line">console.log(stu1._name,stu1._age);</span><br><span class="line">stu1.walk();//</span><br><span class="line"></span><br><span class="line">//在创建学生对象</span><br><span class="line">var stu2=createStudent(&apos;Tom&apos;,39);</span><br><span class="line">console.log(stu2._name,stu2._age);</span><br><span class="line">stu2.walk();</span><br><span class="line"></span><br><span class="line">console.log(stu1.walk==stu2.walk);//false</span><br></pre></td></tr></table></figure>
+</code></pre><h3 id="3-构造函数创建对象"><a href="#3-构造函数创建对象" class="headerlink" title="3. 构造函数创建对象"></a>3. 构造函数创建对象</h3><blockquote>
+<p>构造函数被调用的时候，系统做了两件事情：<br> 1.new Object<br> 2.将创建的对象返回<br>        缺点：为每个对象都生成了方法,内存浪费</p>
 </blockquote>
+<p><code>`</code><br>        function Studnet(name,age,grade){<br>            this.name=name;<br>            this.age=age;<br>            this.grade=grade;</p>
+<pre><code>    this.test=function(){
+        console.log(this.name+&apos;is test&apos;);
+    };
+}
+
+//利用构造函数造对象
+var stu1=new Studnet(&apos;Tom&apos;,25,&apos;二年级&apos;);
+console.log(stu1.name,stu1.age,stu1.grade);
+stu1.test();
+
+var stu2=new Studnet(&apos;Jack&apos;,28,&apos;三年级&apos;);
+console.log(stu2.name,stu2.age,stu2.grade);
+stu2.test();
+
+console.log(stu1.test==stu2.test);//false
+</code></pre><p><code></code></p>
 
       
 
@@ -269,7 +290,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/04/08/hello-world/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2016/11/05/js的面向对象/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -283,20 +304,15 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/04/10/demo1/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/09/08/vue实践/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          详解Promise的用法
+          Vue 的实践
         
       </div>
     </a>
   
-  
-    <a href="/2017/09/08/vue实践/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Vue 的实践</div>
-      <i class="icon-circle-right"></i>
-    </a>
   
 </nav>
 
