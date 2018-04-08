@@ -172,8 +172,25 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>#如何创建一个自己的博客</p>
-<h3 id="1-首先下载安装nodejs"><a href="#1-首先下载安装nodejs" class="headerlink" title="1.首先下载安装nodejs"></a>1.首先下载安装nodejs</h3>
+        <h2 id="如何创建一个自己的博客"><a href="#如何创建一个自己的博客" class="headerlink" title="如何创建一个自己的博客"></a>如何创建一个自己的博客</h2><blockquote>
+<h3 id="1-首先下载安装nodejs"><a href="#1-首先下载安装nodejs" class="headerlink" title="1.首先下载安装nodejs"></a>1.首先下载安装nodejs</h3><p>Nodejs是一个运行环境，这个环境运行js代码(作用相当于浏览器)，大家可搜索<a href="https://npm.taobao.org/mirrors/node/v8.9.3/node-v8.9.3-x64.msi这个网址，然后根据自己的电脑选择版本，本人的是window" target="_blank" rel="noopener">https://npm.taobao.org/mirrors/node/v8.9.3/node-v8.9.3-x64.msi这个网址，然后根据自己的电脑选择版本，本人的是window</a> 64位操作系统，所以选择Windows 系统 (.msi) 64位。最后在命令窗口 node -v 和 npm -v 来验证是否安装成功。</p>
+</blockquote>
+<blockquote>
+<h3 id="2-安装hexo工具"><a href="#2-安装hexo工具" class="headerlink" title="2.安装hexo工具"></a>2.安装hexo工具</h3><p>在网上搜索hexo，然后在命令窗口输入npm install -g hexo-cli，如果速度太慢，可以切换成淘宝镜像源：npm config set registry <a href="https://registry.npm.taobao.org。" target="_blank" rel="noopener">https://registry.npm.taobao.org。</a></p>
+</blockquote>
+<blockquote>
+<h3 id="3-使用如下命令安装下载博客源代码"><a href="#3-使用如下命令安装下载博客源代码" class="headerlink" title="3.使用如下命令安装下载博客源代码"></a>3.使用如下命令安装下载博客源代码</h3><p>hexo init blog // 找到一个合适的文件(确保你的路径没有中文)输入此命令。<br>     cd blog     // 切换到blog文件夹中<br>     npm install // 安装依赖文件<br>     hexo server // 在本地开启一个服务器</p>
+</blockquote>
+<blockquote>
+<h3 id="4-配置远程仓库"><a href="#4-配置远程仓库" class="headerlink" title="4.配置远程仓库"></a>4.配置远程仓库</h3><p>首先需要给hexo安装git工具插件，用npm install hexo-deployer-git –save命令，然后在hexo的工程中的根目录下找到_config.yml的文件，配置如下：<br>     deploy:<br>          type: git<br>          repository: <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:hjyl-cheng/hjyl-cheng.github.io.git<br>          branch: master</p>
+</blockquote>
+<blockquote>
+<h3 id="5-使用hexo将代码提交到远程仓库"><a href="#5-使用hexo将代码提交到远程仓库" class="headerlink" title="5.使用hexo将代码提交到远程仓库"></a>5.使用hexo将代码提交到远程仓库</h3><p>hexo clean // 先将之前生成的public文件夹删除掉<br>       hexo d g   // 生成html代码并且提交到github上。 g: 生成 d:提交</p>
+</blockquote>
+<blockquote>
+<h3 id="6-优化博客"><a href="#6-优化博客" class="headerlink" title="6.优化博客"></a>6.优化博客</h3><p>UI 优化，可下载相关的主题，修改theme: ***，再根据个人喜好修改头像等。</p>
+</blockquote>
+
       
 
       
