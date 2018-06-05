@@ -79,7 +79,7 @@
 				
 					<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
+					<a class="weibo" target="_blank" href="https://weibo.com/u/6039023183/home?wvr=5" title="weibo"><i class="icon-weibo"></i></a>
 		        
 					<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
 		        
@@ -120,7 +120,7 @@
 					
 						<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
+						<a class="weibo" target="_blank" href="https://weibo.com/u/6039023183/home?wvr=5" title="weibo"><i class="icon-weibo"></i></a>
 			        
 						<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
 			        
@@ -152,6 +152,86 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-demo2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/15/demo2/">搁浅的博客</a>
+    </h1>
+  
+
+        
+        <a href="/2018/05/15/demo2/" class="archive-article-date">
+  	<time datetime="2018-05-15T12:06:37.310Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="vue中组件之间的通信"><a href="#vue中组件之间的通信" class="headerlink" title="vue中组件之间的通信"></a>vue中组件之间的通信</h2><p> Promise是一个构造函数，它接收一个参数，是函数，并且传入两个参数：resolve，reject，分别表示异步操作执行成功后的回调函数和异步操作执行失败后的回调函数。不过按照标准来讲，resolve是将Promise的状态置为fullfiled，reject是将Promise的状态置为rejected。它本身有all、reject、resolve这几个的方法，原型上有then、catch、race等的方法,下面为大家详细介绍其用法。<br>     <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">      var p = new Promise(function(resolve, reject)&#123;</span><br><span class="line">    setTimeout(function()&#123;</span><br><span class="line">        console.log(&apos;执行完成&apos;);</span><br><span class="line">        resolve(&apos;随便什么数据&apos;);</span><br><span class="line">    &#125;, 1000);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p> 在上面的代码中，执行了一个异步操作，1秒之后，输出“执行完成”，并且调用resolve方法。看到这里，你可能会注意到，我们并没有调用函数，Promise自动进行了执行，所以我们一般把Promise放到函数里面，示例如下：<br>     <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">     function run()&#123;</span><br><span class="line">	var p=new Promise(function(resolve,reject)&#123;</span><br><span class="line">           setTimeout(function()&#123;</span><br><span class="line">           	console.log(&quot;执行完成&quot;);</span><br><span class="line">           	resolve(&quot;随便什么数据&quot;);</span><br><span class="line">           &#125;,1000);</span><br><span class="line">    &#125;);</span><br><span class="line">    return p;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="then方法"><a href="#then方法" class="headerlink" title="then方法"></a>then方法</h3><p>在函数最后，会return出Promise对象，然后我们就可以调用它的then方法：</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">  run().then(function(data)&#123;</span><br><span class="line">	console.log(data);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</code></pre><p>在run()的返回上直接调用then方法，then接收一个参数，是函数，并且会拿到我们在runAsync中调用resolve时传的的参数。运行这段代码，会在2秒后输出“执行完成”，紧接着输出“随便什么数据”。这时我们就会明白，then里面的函数就跟我们平时的回调函数一个意思，能够在run这个异步任务执行完成之后被执行。这就是Promise的作用了，简单来讲，就是能把原来的回调写法分离出来，在异步操作执行完后，用链式调用的方式执行回调函数。你可能会想，我写个回调函数不是照样能实现Promise函数的功能吗，但是如果是多次回调，你就会发现callback回调不能满足我们的需求了，而then方法可以进行链式操作，很好地解决了回调地狱的问题。</p>
+<h3 id="链式操作的用法"><a href="#链式操作的用法" class="headerlink" title="链式操作的用法"></a>链式操作的用法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"> function run()&#123;</span><br><span class="line">	var p=new Promise(function(resolve,reject)&#123;</span><br><span class="line">	    setTimeout(function()&#123;</span><br><span class="line">	        onsole.log(&quot;执行完成&quot;);</span><br><span class="line">	        resolve(&quot;随便什么数据&quot;);</span><br><span class="line">	    &#125;,1000);</span><br><span class="line">     &#125;);</span><br><span class="line">     return p;</span><br><span class="line">&#125;</span><br><span class="line">run()</span><br><span class="line">.then(function(data)&#123;</span><br><span class="line">	console.log(data);</span><br><span class="line">	return run();</span><br><span class="line">&#125;)</span><br><span class="line">.then(function(data)&#123;</span><br><span class="line">	console.log(data);</span><br><span class="line">    return run();</span><br><span class="line">&#125;)</span><br><span class="line">.then(function(data)&#123;</span><br><span class="line">	console.log(data);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>运行之后，每隔两秒输出每个异步回调中的内容，在runAsync2中传给resolve的数据，能在接下来的then方法中拿到。运行结果如下：<br>         执行完成<br>         随便什么数据<br>         执行完成<br>         随便什么数据<br>         执行完成<br>         随便什么数据</p>
+<p>你也可以直接return “hello world”，会输出hello world，但其后面不能继续使用then方法。</p>
+<h3 id="reject的用法"><a href="#reject的用法" class="headerlink" title="reject的用法"></a>reject的用法</h3><p>上面的例子都是“执行成功”的resolve回调,下面我们来看一下reject的用法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">function getNum()&#123;</span><br><span class="line">    var p = new Promise(function(resolve, reject)&#123;</span><br><span class="line">    setTimeout(function()&#123;</span><br><span class="line">        var num = Math.ceil(Math.random()*10);</span><br><span class="line">        if(num&lt;6)&#123;</span><br><span class="line">            resolve(num);</span><br><span class="line">        &#125;</span><br><span class="line">        else&#123;</span><br><span class="line">            reject(&apos;超出范围&apos;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;, 2000);</span><br><span class="line">    &#125;);</span><br><span class="line">    return p;            </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">getNum()</span><br><span class="line">.then(</span><br><span class="line">    function(data)&#123;</span><br><span class="line">        console.log(&apos;resolved&apos;);</span><br><span class="line">        console.log(data);</span><br><span class="line">    &#125;, </span><br><span class="line">    function(reason)&#123;</span><br><span class="line">        console.log(&apos;rejected&apos;);</span><br><span class="line">        console.log(reason);</span><br><span class="line">    &#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>getNum函数执行时，若得到的数字小于6，则认为成功了，调用resolve方法将Promise的状态置为fullfiled,输出得到的数字；否则调用reject的方法将Promise的状态置为rejected，输出“超出范围”。</p>
+<h3 id="catch的用法"><a href="#catch的用法" class="headerlink" title="catch的用法"></a>catch的用法</h3><p>catch方法和reject实现的效果是一样的，但它还用另外一个用法：在执行resolve的回调（也就是上面then中的第一个参数）时，如果抛出异常了，那么并不会报错卡死js，而是会进到catch方法中。示例如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">getNum()</span><br><span class="line">.then(function(data)&#123;</span><br><span class="line">	console.log(&apos;resolved&apos;);</span><br><span class="line">	console.log(data);</span><br><span class="line">	console.log(somedata); //此处的somedata未定义</span><br><span class="line">&#125;)</span><br><span class="line">.catch(function(reason)&#123;</span><br><span class="line">     console.log(&apos;rejected&apos;);</span><br><span class="line">     console.log(reason);</span><br><span class="line"> &#125;);</span><br></pre></td></tr></table></figure></p>
+<p>在resolve的回调中，我们console.log(somedata);而somedata这个变量是没有被定义的。一般情况下，代码运行到这里就直接在控制台报错了，不往下运行了。但是在Promise中，会得到这样的结果：<br>        resolved<br>        2<br>        rejected<br>        ReferenceError: somedata is not defined</p>
+<h3 id="all的用法"><a href="#all的用法" class="headerlink" title="all的用法"></a>all的用法</h3><p>Promise的all方法提供了并行执行异步操作的能力，并且在所有异步操作执行完后才执行回调。示例如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">function run1()&#123;</span><br><span class="line">    var p = new Promise(function(resolve, reject)&#123;</span><br><span class="line">        setTimeout(function()&#123;</span><br><span class="line">            console.log(&apos;异步任务1执行完成&apos;);</span><br><span class="line">            resolve(&apos;随便什么数据1&apos;);</span><br><span class="line">        &#125;, 1000);</span><br><span class="line">    &#125;);</span><br><span class="line">    return p;            </span><br><span class="line">&#125;</span><br><span class="line">function run2()&#123;</span><br><span class="line">    var p = new Promise(function(resolve, reject)&#123;</span><br><span class="line">        setTimeout(function()&#123;</span><br><span class="line">            console.log(&apos;异步任务2执行完成&apos;);</span><br><span class="line">            resolve(&apos;随便什么数据2&apos;);</span><br><span class="line">        &#125;, 2000);</span><br><span class="line">    &#125;);</span><br><span class="line">    return p;            </span><br><span class="line">&#125;</span><br><span class="line">Promise</span><br><span class="line">.all([run1(), run2()])</span><br><span class="line">.then(function(results)&#123;</span><br><span class="line">    console.log(results);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>用Promise.all来执行，all接收一个数组参数，里面的值最终都返回Promise对象，等到所有的Promise对象都执行完才会进入then方法，而异步操作的数据都保存在一个数组中，以参数的形式传给then方法，输出结果如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">异步任务1执行完成</span><br><span class="line">异步任务2执行完成</span><br><span class="line">[&quot;随便什么数据1&quot;,&quot;随便什么数据2&quot;]</span><br></pre></td></tr></table></figure></p>
+<h3 id="race的用法"><a href="#race的用法" class="headerlink" title="race的用法"></a>race的用法</h3><p>race是赛跑的意思，race方法是以执行速度快的异步操作回调。如用race给某个异步请求设置超时时间，并且在超时后执行相应的操作：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">function request()&#123;</span><br><span class="line">    var p=new Promise(function(resolve,reject)&#123;</span><br><span class="line">		var img=new Image();</span><br><span class="line">			img.onload=function()&#123;</span><br><span class="line">				resolve(img);</span><br><span class="line">			&#125;</span><br><span class="line">		    img.src=&quot;XXXX&quot;;</span><br><span class="line">	&#125;);</span><br><span class="line">	return p;</span><br><span class="line">&#125;</span><br><span class="line">        </span><br><span class="line">function timeout()&#123;</span><br><span class="line">    var p=new Promise(function(resolve,reject)&#123;</span><br><span class="line">        setTimeout(function()&#123;</span><br><span class="line">            reject(&quot;图片请求超时&quot;);</span><br><span class="line">        &#125;,5000);</span><br><span class="line">    &#125;);</span><br><span class="line">    return p;</span><br><span class="line">&#125;</span><br><span class="line">Promise</span><br><span class="line">.race([request(),timeout()])</span><br><span class="line">.then(function(results)&#123;</span><br><span class="line">     console.log(results);</span><br><span class="line">&#125;)</span><br><span class="line">.catch(function (reason)&#123;</span><br><span class="line">    console.log(reason);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>Promise的race方法会同时调用两个方法，若5秒内request函数调用成功，则调用resolve方法把Promise的状态置为fullfiled,进入then方法；否则会执行timeout函数，则调用reject方法把Promise的状态置为rejected,进入catch方法。示例中，因为找不到图片，输出结果如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Failed to load resource: net::ERR_FILE_NOT_FOUND</span><br><span class="line">图片请求超时</span><br></pre></td></tr></table></figure></p>
+<p>Promise构造函数的常用方法到这里基本上就说完了，后面将讲述javascript的闭包现象。敬请期待！</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/05/15/demo2/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-demo1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -159,7 +239,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/10/demo1/">搁浅的博客</a>
+      <a class="article-title" href="/2018/04/10/demo1/">详解Promise的用法</a>
     </h1>
   
 
