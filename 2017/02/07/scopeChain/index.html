@@ -6,15 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2016 | Hexo</title>
+  <title>JavaScript作用域的理解 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/2016/index.html">
+  <meta name="description" content="一、作用域的分类  变量的作用域无非为两种：全局变量和局部变量  二、全局变量（作用于全局）   全局变量就是在函数外部声明的变量，即隶属于window的变量，对于任何函数来说都可以访问12345function demo()&amp;#123;    num = &amp;quot;helloWorld&amp;quot;; &amp;#125; demo(); console.log(num);// result:  he">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript作用域的理解">
+<meta property="og:url" content="http://yoursite.com/2017/02/07/scopeChain/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="一、作用域的分类  变量的作用域无非为两种：全局变量和局部变量  二、全局变量（作用于全局）   全局变量就是在函数外部声明的变量，即隶属于window的变量，对于任何函数来说都可以访问12345function demo()&amp;#123;    num = &amp;quot;helloWorld&amp;quot;; &amp;#125; demo(); console.log(num);// result:  he">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-06-05T12:59:14.272Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="JavaScript作用域的理解">
+<meta name="twitter:description" content="一、作用域的分类  变量的作用域无非为两种：全局变量和局部变量  二、全局变量（作用于全局）   全局变量就是在函数外部声明的变量，即隶属于window的变量，对于任何函数来说都可以访问12345function demo()&amp;#123;    num = &amp;quot;helloWorld&amp;quot;; &amp;#125; demo(); console.log(num);// result:  he">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -150,49 +154,189 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-scopeChain" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/11/05/js的面向对象/" class="archive-article-date">
-  	<time datetime="2016-11-05T13:13:35.228Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-11-05</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/11/05/js的面向对象/">js的面向对象（封装、继承、多态）</a>
+    <h1 class="article-title" itemprop="name">
+      JavaScript作用域的理解
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
+        
+        <a href="/2017/02/07/scopeChain/" class="archive-article-date">
+  	<time datetime="2017-02-07T09:49:26.365Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p> 一、作用域的分类</p>
+<blockquote>
+<p>变量的作用域无非为两种：全局变量和局部变量</p>
+</blockquote>
+<p>二、全局变量（作用于全局）</p>
+<blockquote>
+<ol>
+<li>全局变量就是在函数外部声明的变量，即隶属于window的变量，对于任何函数来说都可以访问<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function demo()&#123;</span><br><span class="line">    num = &quot;helloWorld&quot;;</span><br><span class="line"> &#125;</span><br><span class="line"> demo();</span><br><span class="line"> console.log(num);// result:  helloWorld</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</blockquote>
+<p> <strong><em>注：函数内部变量未使用var，则都默认为全局变量</em></strong></p>
+<a id="more"></a>
+<blockquote>
+<ol start="2">
+<li>if…else和for 循环内的变量也可以在外部访问（JavaScript无块级作用域）<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">for (var i=0;i&lt;10;i++)&#123;</span><br><span class="line">&#125;</span><br><span class="line">if(i)&#123;</span><br><span class="line">    var y = 3;</span><br><span class="line">&#125;</span><br><span class="line">console.log(i); // result: 10</span><br><span class="line">console.log(y); // result: 3</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</blockquote>
+<p>二、局部变量（作用于局部）</p>
+<blockquote>
+<ol>
+<li>局部变量只限于某些代码块内部访问，而对于函数外部无法访问(函数内部没有关键字 var ，都属于全局变量)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function demo()&#123;</span><br><span class="line">    var num = &quot;helloWorld&quot;;</span><br><span class="line">    console.log(num);</span><br><span class="line">&#125;</span><br><span class="line">demo();// result: helloWorld;</span><br><span class="line">console.log(num); // result: error  num is not defined</span><br></pre></td></tr></table></figure></li>
+</ol>
+</blockquote>
 
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2017/02/07/scopeChain/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2017/02/26/scopeChain1/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          作用域链和闭包的理解
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2016/11/05/js的面向对象/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">js的面向对象（封装、继承、多态）</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -215,8 +359,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

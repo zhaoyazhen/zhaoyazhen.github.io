@@ -6,15 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2016 | Hexo</title>
+  <title>作用域链和闭包的理解 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/2016/index.html">
+  <meta name="description" content="一、作用域链   什么是作用域链？我的理解就是哪些数据能够被访问，以及访问过程的某些机制；函数和对象一样，拥有可以通过代码访问的属性和仅供JavaScript引擎访问的内部属性，当函数被创建时，内部属性[[scope]]就会指向该函数的作用域链，而作用域链中储存了每个执行环境相关的变量对象。    二、 函数内部[[scope]]属性，是虚拟出来的，为了方便理解函数。下面，看一些列子：123456">
+<meta property="og:type" content="article">
+<meta property="og:title" content="作用域链和闭包的理解">
+<meta property="og:url" content="http://yoursite.com/2017/02/26/scopeChain1/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="一、作用域链   什么是作用域链？我的理解就是哪些数据能够被访问，以及访问过程的某些机制；函数和对象一样，拥有可以通过代码访问的属性和仅供JavaScript引擎访问的内部属性，当函数被创建时，内部属性[[scope]]就会指向该函数的作用域链，而作用域链中储存了每个执行环境相关的变量对象。    二、 函数内部[[scope]]属性，是虚拟出来的，为了方便理解函数。下面，看一些列子：123456">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-06-06T09:47:44.947Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="作用域链和闭包的理解">
+<meta name="twitter:description" content="一、作用域链   什么是作用域链？我的理解就是哪些数据能够被访问，以及访问过程的某些机制；函数和对象一样，拥有可以通过代码访问的属性和仅供JavaScript引擎访问的内部属性，当函数被创建时，内部属性[[scope]]就会指向该函数的作用域链，而作用域链中储存了每个执行环境相关的变量对象。    二、 函数内部[[scope]]属性，是虚拟出来的，为了方便理解函数。下面，看一些列子：123456">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -150,49 +154,202 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-scopeChain1" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/11/05/js的面向对象/" class="archive-article-date">
-  	<time datetime="2016-11-05T13:13:35.228Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-11-05</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/11/05/js的面向对象/">js的面向对象（封装、继承、多态）</a>
+    <h1 class="article-title" itemprop="name">
+      作用域链和闭包的理解
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
+        
+        <a href="/2017/02/26/scopeChain1/" class="archive-article-date">
+  	<time datetime="2017-02-26T09:50:20.352Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>一、作用域链</p>
+<blockquote>
+<ul>
+<li>什么是作用域链？<br>我的理解就是哪些数据能够被访问，以及访问过程的某些机制；函数和对象一样，拥有可以通过代码访问的属性和仅供JavaScript引擎访问的内部属性，当函数被创建时，内部属性[[scope]]就会指向该函数的作用域链，而作用域链中储存了每个执行环境相关的变量对象。</li>
+</ul>
+</blockquote>
+<p> 二、 函数内部[[scope]]属性，是虚拟出来的，为了方便理解函数。下面，看一些列子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">var fun1,fun2;</span><br><span class="line">function fun()&#123;</span><br><span class="line">    var num = 10;</span><br><span class="line">    fun1 = function ()&#123;</span><br><span class="line">        console.log(++num);</span><br><span class="line">    &#125;</span><br><span class="line">    console.log(num);</span><br><span class="line">    fun2 = function ()&#123;</span><br><span class="line">        console.log(--num);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">fun();//10</span><br><span class="line">fun1();//11</span><br><span class="line">fun2();//10</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<blockquote>
+<p>&nbsp; fun1()运行的结果是11，fun2()运行的结果是10，因为这两个函数在同一父级作用域下，指向的是同一个作用域链；当函数fun1()执行时，变量num向上寻找值，函数fun1内部未找到，则向父级寻找获取，结果为11；函数fun2()执行时，由于和fun1()指向同一作用域链，此时num为11，执行后结果为10。</p>
+</blockquote>
+<p>二、闭包</p>
+<blockquote>
+<ol>
+<li>闭包的理解<br>上篇已经简单的介绍了变量作用域，而闭包则与变量的作用域息息相关；<br>闭包：能够访问其他函数内部变量的函数</li>
+<li>闭包的实例<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function demo()&#123;</span><br><span class="line">   var n = 100;</span><br><span class="line">   function demo1()&#123;</span><br><span class="line">        alert(n);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</blockquote>
+<ul>
+<li><p>此时，无法在外部访问demo1的内部，但是呢，我们需要在外部访问，这时该怎么办呢？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function demo()&#123;</span><br><span class="line">    var n = 100;</span><br><span class="line">    function demo1()&#123;</span><br><span class="line">        alert(n);</span><br><span class="line">    &#125;</span><br><span class="line">    return demo1;</span><br><span class="line">&#125;</span><br><span class="line">var fn = demo();</span><br><span class="line">fn();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>当我们把demo1作为返回值返回，这时就可以在外部访问demo1的内部了</p>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>闭包的注意事项<blockquote>
+<ul>
+<li>用途：可以在外部访问函数内部变量；这些变量的值始终保存在内存中</li>
+<li>由于闭包函数中的变量始终保存在内存中，则会消耗内存，所以，不要滥用闭包，会造成网页性能问题；在IE中会存在内存泄漏，解决方法是，退出函数之前，将不需要用的变量删除。</li>
+<li>闭包会在父函数外部，改变父函数内部变量的值。所以，如果你把父函数当作对象（object）使用，把闭包当作它的公用方法（Public Method），把内部变量当作它的私有属性（private value），这时一定要小心，不要随便改变父函数内部变量的值。</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
 
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2017/02/26/scopeChain1/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2017/04/07/Angular环境搭建/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          使用Angular-cli快速搭建项目
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2017/02/07/scopeChain/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">JavaScript作用域的理解</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -215,8 +372,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

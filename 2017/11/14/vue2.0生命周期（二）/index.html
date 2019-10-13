@@ -6,15 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2016 | Hexo</title>
+  <title>vue2.0生命周期（二） | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/2016/index.html">
+  <meta name="description" content="一、Vue对象实例化123456789101112JS代码:new Vue(&amp;#123;  /* DOM挂载点 */  el: &amp;apos;#app&amp;apos;,  /* 使用哪个模板 */  template: &amp;apos;&amp;lt;div&amp;gt;&amp;#123;&amp;#123;fruit&amp;#125;&amp;#125;&amp;lt;/div&amp;gt;&amp;apos;,  /* 给模板传递的数据 */  data: &amp;#12">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue2.0生命周期（二）">
+<meta property="og:url" content="http://yoursite.com/2017/11/14/vue2.0生命周期（二）/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="一、Vue对象实例化123456789101112JS代码:new Vue(&amp;#123;  /* DOM挂载点 */  el: &amp;apos;#app&amp;apos;,  /* 使用哪个模板 */  template: &amp;apos;&amp;lt;div&amp;gt;&amp;#123;&amp;#123;fruit&amp;#125;&amp;#125;&amp;lt;/div&amp;gt;&amp;apos;,  /* 给模板传递的数据 */  data: &amp;#12">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5877364-2880ba58c70d8d76.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-06-05T13:37:54.470Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="vue2.0生命周期（二）">
+<meta name="twitter:description" content="一、Vue对象实例化123456789101112JS代码:new Vue(&amp;#123;  /* DOM挂载点 */  el: &amp;apos;#app&amp;apos;,  /* 使用哪个模板 */  template: &amp;apos;&amp;lt;div&amp;gt;&amp;#123;&amp;#123;fruit&amp;#125;&amp;#125;&amp;lt;/div&amp;gt;&amp;apos;,  /* 给模板传递的数据 */  data: &amp;#12">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/5877364-2880ba58c70d8d76.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -150,49 +156,220 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-vue2.0生命周期（二）" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/11/05/js的面向对象/" class="archive-article-date">
-  	<time datetime="2016-11-05T13:13:35.228Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-11-05</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/11/05/js的面向对象/">js的面向对象（封装、继承、多态）</a>
+    <h1 class="article-title" itemprop="name">
+      vue2.0生命周期（二）
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
+        
+        <a href="/2017/11/14/vue2.0生命周期（二）/" class="archive-article-date">
+  	<time datetime="2017-11-14T13:29:04.654Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一、Vue对象实例化"><a href="#一、Vue对象实例化" class="headerlink" title="一、Vue对象实例化"></a>一、Vue对象实例化</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">JS代码:</span><br><span class="line"></span><br><span class="line">new Vue(&#123;</span><br><span class="line">  /* DOM挂载点 */</span><br><span class="line">  el: &apos;#app&apos;,</span><br><span class="line">  /* 使用哪个模板 */</span><br><span class="line">  template: &apos;&lt;div&gt;&#123;&#123;fruit&#125;&#125;&lt;/div&gt;&apos;,</span><br><span class="line">  /* 给模板传递的数据 */</span><br><span class="line">  data: &#123;</span><br><span class="line">    fruit: &apos;apple&apos;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>其中<strong><em>Vue</em></strong>函数称为构造函数，使用<strong><em>new</em></strong>就可以实例化出来一个实例化对象。</p>
+<h3 id="二、Vue的生命周期"><a href="#二、Vue的生命周期" class="headerlink" title="二、Vue的生命周期"></a>二、Vue的生命周期</h3><p>刚刚接触Vue.js, 之前使用React.js知道需要搞清楚它的生命周期及其每个钩子函数的含义。</p>
+<table>
+<thead>
+<tr>
+<th>钩子函数</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>beforeCreate</td>
+<td>组件实例刚被创建，组件属性计算之前，如data属性等</td>
+</tr>
+<tr>
+<td>created</td>
+<td>组件实例创建完成，属性已绑定，但DOM还未生成，$el属性还不存在</td>
+</tr>
+<tr>
+<td>beforeMount</td>
+<td>模板编译/挂载之前</td>
+</tr>
+<tr>
+<td>mounted</td>
+<td>模板编译/挂载之后</td>
+</tr>
+<tr>
+<td>beforeUpdate</td>
+<td>组件更新之前</td>
+</tr>
+<tr>
+<td>updated</td>
+<td>组件更新之后</td>
+</tr>
+<tr>
+<td>activated</td>
+<td>for keep-alive, 组件被激活时调用</td>
+</tr>
+<tr>
+<td>deactivated</td>
+<td>for keep-alive, 组件被移除时调用</td>
+</tr>
+<tr>
+<td>beforeDestory</td>
+<td>组件销毁前调用</td>
+</tr>
+</tbody>
+</table>
+<a id="more"></a>
+<p><img src="http://upload-images.jianshu.io/upload_images/5877364-2880ba58c70d8d76.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Vue生命周期.png"></p>
+<h3 id="2-1生命周期的探究"><a href="#2-1生命周期的探究" class="headerlink" title="2.1生命周期的探究"></a>2.1生命周期的探究</h3><p>对于执行顺序和什么时间执行，看上面的图会比较没有太多的耐心，因此先看一下钩子函数的执行然后再回头看图会更容易理解。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">// The Vue build version to load with the `import` command</span><br><span class="line">// (runtime-only or standalone) has been set in webpack.base.conf with an alias.</span><br><span class="line">import Vue from &apos;vue&apos;</span><br><span class="line">import App from &apos;./App&apos;</span><br><span class="line">import router from &apos;./router&apos;</span><br><span class="line"></span><br><span class="line">Vue.config.productionTip = false</span><br><span class="line"></span><br><span class="line">/* eslint-disable no-new */</span><br><span class="line">var app1 = new Vue(&#123;</span><br><span class="line">  el: &apos;#app&apos;,</span><br><span class="line">  router,</span><br><span class="line">  data: &#123;</span><br><span class="line">    message: &apos;kuaixiang&apos;</span><br><span class="line">  &#125;,</span><br><span class="line">  beforeCreate: function () &#123;</span><br><span class="line">    console.group(&apos;beforeCreate 创建之前:&apos;)</span><br><span class="line">    console.log(&apos;%c%s&apos;, &apos;color:red&apos;, &apos;el     : &apos; + this.$el)</span><br><span class="line">    console.log(&apos;%c%s&apos;, &apos;color:red&apos;, &apos;data   : &apos; + this.$data)</span><br><span class="line">    console.log(&apos;%c%s&apos;, &apos;color:red&apos;, &apos;message: &apos; + this.message)</span><br><span class="line">  &#125;,</span><br><span class="line">  created: function () &#123;</span><br><span class="line">    console.group(&apos;created 创建完毕:&apos;)</span><br><span class="line">    console.log(&apos;%c%s&apos;, &apos;color:red&apos;, &apos;el     : &apos; + this.$el)</span><br><span class="line">    console.log(&apos;%c%s&apos;, &apos;color:red&apos;, &apos;data   : &apos; + this.$data)</span><br><span class="line">    console.log(&apos;%c%s&apos;, &apos;color:red&apos;, &apos;message: &apos; + this.message)</span><br><span class="line">  &#125;,</span><br><span class="line">  beforeMount: function () &#123;</span><br><span class="line">    console.group(&apos;beforeMount 挂载前:&apos;)</span><br><span class="line">    console.log(&apos;%c%s&apos;, &apos;color:red&apos;, &apos;el     : &apos; + this.$el)</span><br><span class="line">    console.log(&apos;%c%s&apos;, &apos;color:red&apos;, &apos;data   : &apos; + this.$data)</span><br><span class="line">    console.log(&apos;%c%s&apos;, &apos;color:red&apos;, &apos;message: &apos; + this.message)</span><br><span class="line">  &#125;,</span><br><span class="line">  mounted: function () &#123;</span><br><span class="line">    console.group(&apos;mounted 挂载结束:&apos;)</span><br><span class="line">    console.log(&apos;%c%s&apos;, &apos;color:red&apos;, &apos;el     : &apos; + this.$el)</span><br><span class="line">    console.log(&apos;%c%s&apos;, &apos;color:red&apos;, &apos;data   : &apos; + this.$data)</span><br><span class="line">    console.log(&apos;%c%s&apos;, &apos;color:red&apos;, &apos;message: &apos; + this.message)</span><br><span class="line">  &#125;,</span><br><span class="line">  beforeUpdate: function () &#123;</span><br><span class="line">    console.group(&apos;beforeUpdate 更新前:&apos;)</span><br><span class="line">    console.log(&apos;%c%s&apos;, &apos;color:red&apos;, &apos;el     : &apos; + this.$el)</span><br><span class="line">    console.log(&apos;%c%s&apos;, &apos;color:red&apos;, &apos;data   : &apos; + this.$data)</span><br><span class="line">    console.log(&apos;%c%s&apos;, &apos;color:red&apos;, &apos;message: &apos; + this.message)</span><br><span class="line">  &#125;,</span><br><span class="line">  updated: function () &#123;</span><br><span class="line">    console.group(&apos;updated 更新完成:&apos;)</span><br><span class="line">    console.log(&apos;%c%s&apos;, &apos;color:red&apos;, &apos;el     : &apos; + this.$el)</span><br><span class="line">    console.log(&apos;%c%s&apos;, &apos;color:red&apos;, &apos;data   : &apos; + this.$data)</span><br><span class="line">    console.log(&apos;%c%s&apos;, &apos;color:red&apos;, &apos;message: &apos; + this.message)</span><br><span class="line">  &#125;,</span><br><span class="line">  beforeDestory: function () &#123;</span><br><span class="line">    console.group(&apos;beforeDestory 销毁之前:&apos;)</span><br><span class="line">    console.log(&apos;%c%s&apos;, &apos;color:red&apos;, &apos;el     : &apos; + this.$el)</span><br><span class="line">    console.log(&apos;%c%s&apos;, &apos;color:red&apos;, &apos;data   : &apos; + this.$data)</span><br><span class="line">    console.log(&apos;%c%s&apos;, &apos;color:red&apos;, &apos;message: &apos; + this.message)</span><br><span class="line">  &#125;,</span><br><span class="line">  destroyed: function () &#123;</span><br><span class="line">    console.group(&apos;destroyed 销毁完成:&apos;)</span><br><span class="line">    console.log(&apos;%c%s&apos;, &apos;color:red&apos;, &apos;el     : &apos; + this.$el)</span><br><span class="line">    console.log(&apos;%c%s&apos;, &apos;color:red&apos;, &apos;data   : &apos; + this.$data)</span><br><span class="line">    console.log(&apos;%c%s&apos;, &apos;color:red&apos;, &apos;message: &apos; + this.message)</span><br><span class="line">  &#125;,</span><br><span class="line">  template: &apos;&lt;App/&gt;&apos;,</span><br><span class="line">  components: &#123; App &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">console.log(app1)</span><br></pre></td></tr></table></figure></p>
+<p>这段代码验证了再Vue.js中的生命周期的每个阶段，需要再结合图来看每个钩子函数。</p>
+<blockquote>
+<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><p><a href="https://segmentfault.com/a/1190000008010666" target="_blank" rel="noopener">https://segmentfault.com/a/1190000008010666</a></p>
+</blockquote>
 
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2017/11/14/vue2.0生命周期（二）/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2017/12/18/ES6/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          【ES6系列】变量与块级作用域
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2017/09/08/vue实践/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Vue 的实践</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -215,8 +392,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
